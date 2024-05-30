@@ -15,7 +15,7 @@ const { isAuthenticated } = require("./middleware/jwt.middleware");
 
 const app = express();
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(morgan("dev"));
 app.use(cookieParser());
 
@@ -32,11 +32,16 @@ app.use("/auth", authRoutes);
 const userRoutes = require("./routes/user.routes");
 app.use("/user", isAuthenticated, userRoutes);
 
+const staffRoutes = require("./routes/staff.routes");
+app.use("/staff", staffRoutes);
+
 const appointmentRoutes = require("./routes/appointment.routes");
 app.use("/appointment", isAuthenticated, appointmentRoutes);
 
-const staffRoutes = require("./routes/staff.routes");
-app.use("/staff", isAuthenticated, staffRoutes);
+
+
+/* const staffRoutes = require("./routes/staff.routes");
+app.use("/staff", isAuthenticated, staffRoutes); */
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

@@ -13,14 +13,7 @@ router.get("/users", async (req, res, next) => {
   }
 });
 
-//Route to upload images using cloudinary
-router.post('/upload', fileUploader.single('imageUrl'), async (req, res, next) => {
-  if(!req.file){
-   next(new Error('No file upload'));
-   return;
-  }
-  res.json({fileUrl : req.file.path})
-})
+
 
 // Get Users by ID
 router.get('/users/:id', isAuthenticated, (req, res, next) => {

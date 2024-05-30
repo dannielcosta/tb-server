@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Appointment = require("../models/Appointment.model");
-const populate = require("../utils/populate");
+const populate = require("mongoose");
 const { isAuthenticated } = require("../middleware/jwt.middleware");
 
 router.get('/appointments', async (req, res, next) => {
